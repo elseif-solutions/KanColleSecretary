@@ -23,17 +23,36 @@ namespace KanColleSecretary
         public MainWindow()
         {
             InitializeComponent();
+            
         }
-
+        
         private void Window_Activated(object sender, EventArgs e)
         {
+            /* Initialize tray */
+            
+            /* Generate Bitmap of Image */            
             BitmapImage Bitmap = new BitmapImage();
             Bitmap.BeginInit();
-            Bitmap.UriSource = new Uri("C:/KCS/Secretary.png", UriKind.Relative);
+            Bitmap.UriSource = new Uri("C:/KCS/Secretary.png", UriKind.Absolute);
             Bitmap.EndInit();
+            /* Set window */
             this.Height = Bitmap.Height;
             this.Width = Bitmap.Width;
+            /* Set image */
             Secretary.Source = Bitmap;
+            /* Shrink by 45% */
+            this.Height = this.Height - (this.Height * 45 / 100);
+            this.Width = this.Width - (this.Width * 45 / 100);
+
+            // Move to bottom right
+            var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
+            this.Left = desktopWorkingArea.Right - this.Width;
+            this.Top = desktopWorkingArea.Bottom - this.Height;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

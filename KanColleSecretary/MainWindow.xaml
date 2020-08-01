@@ -8,7 +8,8 @@
         
         WindowStyle="None" AllowsTransparency="True"
         Background="Transparent"
-        Title="MainWindow" Height="450" Width="800" Activated="Window_Activated">
+        
+        Title="MainWindow" Height="450" Width="800" Activated="Window_Activated" ShowInTaskbar="False" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

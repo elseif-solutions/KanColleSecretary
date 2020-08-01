@@ -33,7 +33,15 @@ namespace KanColleSecretary
             /* Generate Bitmap of Image */
             BitmapImage Bitmap = new BitmapImage();
             Bitmap.BeginInit();
-            Bitmap.UriSource = new Uri("C:/KCS/Secretary.png", UriKind.Absolute);
+            try
+            {
+                Bitmap.UriSource = new Uri(path, UriKind.Absolute);
+                
+            }
+            catch
+            {
+                Bitmap.UriSource = new Uri("C:/KCS/Secretary.png", UriKind.Absolute);
+            }
             Bitmap.EndInit();
             /* Set window */
             this.Height = Bitmap.Height;

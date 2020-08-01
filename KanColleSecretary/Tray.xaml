@@ -19,8 +19,7 @@
 
       Background="White">
                     <CheckBox Content="Always on Top" Checked="AoT_on" Unchecked="AoT_off"></CheckBox>
-                    <MenuItem Header="Hide" Click="HideItem" />
-                    <MenuItem Header="Reload" Click="ReloadItem" />
+                    <MenuItem Header="Configuration" Click="Configuration" />
                     <Separator></Separator>
                     <MenuItem Header="Exit" Click="KillItem" />
                 </ContextMenu>

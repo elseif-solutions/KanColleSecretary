@@ -29,16 +29,6 @@ namespace KanColleSecretary
             Application.Current.MainWindow.Close();
         }
 
-        private void ReloadItem(object sender, RoutedEventArgs e)
-        {
-            Application.Current.MainWindow.Hide();
-        }
-
-        private void HideItem(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void AoT_on(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.Topmost = true;
@@ -47,6 +37,14 @@ namespace KanColleSecretary
         private void AoT_off(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.Topmost = false;
+        }
+
+        private void Configuration(object sender, RoutedEventArgs e)
+        {
+            Configuration Config = new Configuration();
+            Config.Activate();
+            Config.Show();
+
         }
     }
 }

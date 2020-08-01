@@ -40,7 +40,14 @@ namespace KanColleSecretary
             }
             catch
             {
-                Bitmap.UriSource = new Uri("C:/KCS/Secretary.png", UriKind.Absolute);
+                try
+                {
+                    Bitmap.UriSource = new Uri("C:/KCS/Secretary.png", UriKind.Absolute);
+                }
+                catch
+                {
+                    MessageBox.Show("You haven't set a Secretary.png");
+                }
             }
             Bitmap.EndInit();
             /* Set window */

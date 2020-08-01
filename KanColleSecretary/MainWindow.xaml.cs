@@ -18,6 +18,8 @@ namespace KanColleSecretary
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -25,12 +27,10 @@ namespace KanColleSecretary
             InitializeComponent();
             
         }
-        
-        private void Window_Activated(object sender, EventArgs e)
+
+        public void ReloadSecretary(string path)
         {
-            /* Initialize tray */
-            
-            /* Generate Bitmap of Image */            
+            /* Generate Bitmap of Image */
             BitmapImage Bitmap = new BitmapImage();
             Bitmap.BeginInit();
             Bitmap.UriSource = new Uri("C:/KCS/Secretary.png", UriKind.Absolute);
@@ -49,10 +49,21 @@ namespace KanColleSecretary
             this.Left = desktopWorkingArea.Right - this.Width;
             this.Top = desktopWorkingArea.Bottom - this.Height;
         }
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            ReloadSecretary(null);
+        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void Window_Initialized(object sender, EventArgs e)
+        {
+            /* Initialize tray */
+            Tray TrayTB = new Tray();
+            TrayTB.Activate();
         }
     }
 }

@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:KanColleSecretary"
         mc:Ignorable="d"
         
+        ShowInTaskbar="False"
         WindowStyle="None" AllowsTransparency="True"
         Background="Transparent"
-        
-        Title="MainWindow" Height="450" Width="800" Activated="Window_Activated" ShowInTaskbar="False" Closing="Window_Closing">
+        ResizeMode="NoResize" IsTabStop="False"
+        Icon="Icon/Icon.ico"
+        Title="KCS" Height="450" Width="800" Activated="Window_Activated" Closing="Window_Closing" Initialized="Window_Initialized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

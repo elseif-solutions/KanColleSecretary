@@ -23,5 +23,30 @@ namespace KanColleSecretary
         {
             InitializeComponent();
         }
+
+        private void KillItem(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.Close();
+        }
+
+        private void ReloadItem(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.Hide();
+        }
+
+        private void HideItem(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AoT_on(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.Topmost = true;
+        }
+
+        private void AoT_off(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.Topmost = false;
+        }
     }
 }

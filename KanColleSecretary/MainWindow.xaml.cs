@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,58 +23,25 @@ namespace KanColleSecretary
 
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
-            
+            Thread ImageThread = new Thread(InitImage);
+            ImageThread.Start();
         }
 
-        public void ReloadSecretary(string path)
+        private void InitImage()
         {
-            /* Generate Bitmap of Image */
-            BitmapImage Bitmap = new BitmapImage();
-            Bitmap.BeginInit();
-            try
+            Application.Current.Dispatcher.Invoke((Action)delegate
             {
-                Bitmap.UriSource = new Uri(path, UriKind.Absolute);
-
-            }
-            catch
-            {
-                try
-                {
-                    Bitmap.UriSource = new Uri("C:/KCS/Secretary.png", UriKind.Absolute);
-                }
-                catch
-                {
-                    MessageBox.Show("You haven't set a Secretary.png", "Error");
-                }
-            }
-            Bitmap.EndInit();
-            /* Set window */
-            this.Height = Bitmap.Height;
-            this.Width = Bitmap.Width;
-            /* Set image */
-            Secretary.Source = Bitmap;
-            /* Shrink by 45% */
-            this.Height = this.Height - (this.Height * 45 / 100);
-            this.Width = this.Width - (this.Width * 45 / 100);
-
-            // Move to bottom right
-            var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
-            this.Left = desktopWorkingArea.Right - this.Width;
-            this.Top = desktopWorkingArea.Bottom - this.Height;
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Application.Current.Shutdown();
+                YWDNE main = new YWDNE();
+                main.Show();
+            });
         }
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            /* Load Secretary */
-            ReloadSecretary(null);
             /* Initialize tray */
             Tray TrayTB = new Tray();
             TrayTB.Activate();

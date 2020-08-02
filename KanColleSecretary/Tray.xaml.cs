@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,28 +24,51 @@ namespace KanColleSecretary
         {
             InitializeComponent();
         }
+        public Window CurrentWindow;
 
+        private void GetYWDNEWindow()
+        {
+            foreach (Window w in App.Current.Windows)
+            {
+                if (w.ToString() == "KanColleSecretary.YWDNE")
+                {
+                    CurrentWindow = w;
+                    return;
+                }
+            }
+            return;
+        }
         private void KillItem(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.Close();
+            Application.Current.Shutdown();
         }
 
         private void AoT_on(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.Topmost = true;
+            GetYWDNEWindow();
+            CurrentWindow.Topmost = true;
         }
 
         private void AoT_off(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.Topmost = false;
+            CurrentWindow.Topmost = false;
         }
 
         private void Configuration(object sender, RoutedEventArgs e)
         {
-            Configuration Config = new Configuration();
-            Config.Activate();
-            Config.Show();
+            Thread ConfigThread = new Thread(OpenConfig);
+            ConfigThread.Start();
 
         }
+        private void OpenConfig()
+        {
+            Application.Current.Dispatcher.Invoke((Action)delegate
+            {
+                Configuration Config = new Configuration();
+                Config.Activate();
+                Config.Show();
+            });
+        }
+
     }
 }

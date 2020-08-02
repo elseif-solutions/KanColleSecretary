@@ -1,4 +1,4 @@
-﻿<Window x:Class="KanColleSecretary.MainWindow"
+﻿<Window x:Class="KanColleSecretary.YWDNE"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,19 +6,16 @@
         xmlns:local="clr-namespace:KanColleSecretary"
         mc:Ignorable="d"
         
-        Initialized="Window_Initialized"
-        
-        Visibility="Hidden"
         ShowInTaskbar="False"
         WindowStyle="None" AllowsTransparency="True"
         Background="Transparent"
         ResizeMode="NoResize" IsTabStop="False"
         Icon="Icon/Icon.ico"
-        Title="KCS" Height="450" Width="800">
+        Title="KCS" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="Secretary"></Image>
+        <Image x:Name="Secretary" Initialized="Secretary_Initialized"></Image>
     </Grid>
 </Window>

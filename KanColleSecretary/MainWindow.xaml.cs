@@ -36,7 +36,7 @@ namespace KanColleSecretary
             try
             {
                 Bitmap.UriSource = new Uri(path, UriKind.Absolute);
-                
+
             }
             catch
             {
@@ -46,7 +46,7 @@ namespace KanColleSecretary
                 }
                 catch
                 {
-                    MessageBox.Show("You haven't set a Secretary.png");
+                    MessageBox.Show("You haven't set a Secretary.png", "Error");
                 }
             }
             Bitmap.EndInit();
@@ -64,10 +64,6 @@ namespace KanColleSecretary
             this.Left = desktopWorkingArea.Right - this.Width;
             this.Top = desktopWorkingArea.Bottom - this.Height;
         }
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            ReloadSecretary(null);
-        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -76,6 +72,8 @@ namespace KanColleSecretary
 
         private void Window_Initialized(object sender, EventArgs e)
         {
+            /* Load Secretary */
+            ReloadSecretary(null);
             /* Initialize tray */
             Tray TrayTB = new Tray();
             TrayTB.Activate();
